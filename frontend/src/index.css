@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-sleep:     #7F77DD;
+  --color-activity:  #D85A30;
+  --color-nutrition: #BA7517;
+  --color-stress:    #1D9E75;
+  --color-weather:   #378ADD;
+  --color-correlator:#993C1D;
+  --color-coach:     #0F6E56;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  background: #0f1117;
+  color: #e8eaf0;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a2d3a; border-radius: 2px; }
