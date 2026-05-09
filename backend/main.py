@@ -116,6 +116,11 @@ app.include_router(rest_router, prefix="/api")
 app.include_router(ws_router)
 
 
+@app.get("/api/health")
+async def api_health():
+    return {"status": "ok", "service": "vitalsync"}
+
+
 @app.get("/health")
 async def health():
     return {"status": "ok", "service": "vitalsync"}

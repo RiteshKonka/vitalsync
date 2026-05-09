@@ -133,20 +133,13 @@ def route_after_correlator(state: VitalSyncState) -> str:
 
 def _make_domain_node(agent_name: AgentName, run_fn):
     """
-    Factory that creates a domain agent node with status bookkeeping.
-    Sets status to RUNNING at start, DONE at completion.
+    Factory that creates a domain agent node.
+    Domain nodes return only their own partial output, while the
+    supervisor manages the shared `agent_status` dictionary.
     """
     def node(state: VitalSyncState) -> dict:
-        # Mark this agent as running
-        status_update = dict(state.get("agent_status", {}))
-        status_update[agent_name.value] = AgentStatus.RUNNING
-
         # Run the agent — returns partial state (insight_messages, stream_events)
         result = run_fn(state)
-
-        # Mark as done
-        status_update[agent_name.value] = AgentStatus.DONE
-        result["agent_status"] = status_update
         return result
 
     node.__name__ = f"agent_{agent_name.value}"
